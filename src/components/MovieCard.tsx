@@ -10,24 +10,26 @@ const MovieCard = ({ movie }: Props) => {
       
       {/* IMAGE */}
       <img
-        src={movie.image}
-        alt={movie.title}
-        className="w-full h-[380px] object-cover"
-      />
+  src={movie.image}
+  alt={movie.name}
+  className="w-full h-[380px] object-cover block" // Agregamos 'block' para forzar el renderizado
+  style={{ minWidth: '100%' }} 
+/>
 
       {/* CONTENT */}
       <div className="p-4 text-white">
         <h3 className="text-xl font-bold mb-2">
-          {movie.title}
+          {movie.name}
         </h3>
 
-        <p className="text-gray-400">
+        <p className="text-gray-400 text-center">
           {movie.category}
         </p>
-
-        <p className="text-sm text-gray-500 mt-1">
-          {movie.year}
+        <p className="text-gray-400 text-center">
+          {movie.anio}
         </p>
+
+       
       </div>
     </div>
   );
