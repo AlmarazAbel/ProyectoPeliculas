@@ -54,6 +54,33 @@ export const initialMovies: Movie[] = [
     isFeatured: true,
     stars: 10,
     isPublished: true
+  },{
+    id: typeof crypto.randomUUID !== 'undefined' 
+        ? crypto.randomUUID() 
+        : Math.random().toString(36).substring(2, 9),
+    name: "The boys",
+    category: "Acción",
+    description: "La serie se desarrolla en un universo donde los superhéroes encarnan el lado sombrío de la fama y el estrellato.",
+    image:"https://wallpapercave.com/wp/wp14789833.webp",
+    anio:2026,
+    
+    isFeatured: true,
+    stars: 7,
+    isPublished: true
+  },
+  {
+    id: typeof crypto.randomUUID !== 'undefined' 
+        ? crypto.randomUUID() 
+        : Math.random().toString(36).substring(2, 9),
+    name: "Intruso en Harvard",
+    category: "Comedia",
+    description: "Monty Kessler estaba lleno de orgullo personal. Había cursado sus estudios en Harvard, recientemente había finalizado su tesis de graduación y solo deseaba alcanzar el éxito en su vida. Sin embargo, un día, de manera fortuita, las cerca de cien páginas de su importante trabajo terminaron en posesión de un indigente",
+    image:"https://wallpapercave.com/wp/wp7392455.jpg",
+    anio:1994,
+    
+    isFeatured: true,
+    stars: 6,
+    isPublished: true
   }
   // ... resto de tus películas
 ];

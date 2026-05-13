@@ -29,7 +29,8 @@ const App = () => {
     setIsAuth(false);
     localStorage.removeItem("isAuth");
   };
-
+   
+  const allMovies = movies; // La lista total del storage
   // Lógica de filtrado en tiempo real
   const filteredMovies = movies.filter(movie => 
     movie.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -42,7 +43,7 @@ const App = () => {
       
       <Routes>
         {/* Pasamos las películas filtradas al Home */}
-        <Route path="/" element={<Home movies={filteredMovies} />} />
+        <Route path="/" element={<Home movies={filteredMovies} allMovies={allMovies} />} />
 
         <Route 
           path="/login" 

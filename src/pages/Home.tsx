@@ -3,12 +3,11 @@ import Hero from "../components/Hero";
 import MovieCard from "../components/MovieCard";
 import  {type Movie } from "../data/movies";
 
-const Home = ({ movies }: { movies: Movie[] }) => {
-  
+const Home = ({ movies, allMovies }: { movies: Movie[]; allMovies: Movie[] }) => {
 
   // Buscamos la destacada que esté publicada. 
   // Si no hay ninguna marcada, usamos la primera publicada que encontremos.
-  const featuredMovie = movies.find((m) => m.isFeatured && m.isPublished) || movies.find(m => m.isPublished);
+  const featuredMovie = allMovies.find((m) => m.isFeatured && m.isPublished) || allMovies.find(m => m.isPublished);
 
   return (
     <main className="bg-[#070b17] min-h-screen">

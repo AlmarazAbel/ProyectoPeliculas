@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaUserCircle, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Props {
   onSearch: (value: string) => void;
@@ -21,13 +22,43 @@ const categories = ["Acción", "Comedia", "Drama", "Terror", "Ciencia ficción"]
         <div className="flex items-center justify-between h-20">
           
           {/* LOGO */}
-          <div className="flex-shrink-0">
-            <img
-              src=""//insertar Logo
-              alt="logo"
-              className="h-10 w-auto"
-            />
-          </div>
+        <Link to="/" className="flex items-center gap-3 group cursor-pointer no-underline">
+          <div className="flex items-center gap-3 group cursor-pointer">
+    {/* Icono Esfereográfico / Play */}
+    <div className="relative">
+      <svg 
+        width="45" 
+        height="45" 
+        viewBox="0 0 50 50" 
+        className="transform group-hover:scale-110 transition-transform duration-300"
+      >
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#7c3aed', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#4c1d95', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+        <rect width="50" height="50" rx="12" fill="url(#grad)" />
+        <path 
+          d="M15 15L35 15L35 35L15 35L15 15Z" 
+          stroke="#fbbf24" 
+          strokeWidth="2" 
+          strokeDasharray="4 2"
+        />
+        <path d="M22 18L32 25L22 32V18Z" fill="white" />
+      </svg>
+    </div>
+    
+    {/* Texto del Logo */}
+    <div className="flex flex-col leading-tight">
+      <h1 className="text-white text-2xl md:text-3xl font-black tracking-tighter uppercase italic">
+        WEB<span className="text-violet-500">PELIS</span>
+      </h1>
+      <div className="h-1 w-full bg-gradient-to-r from-violet-600 to-amber-500 rounded-full"></div>
+    </div>
+  </div>
+  </Link>
+ {/* Termina logo */}
 
           {/* DESKTOP MENU (Visible desde md: 768px) */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8 text-white">
