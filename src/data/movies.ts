@@ -26,6 +26,8 @@ export const initialMovies: Movie[] = [
     isFeatured: true,
     stars: 8.5,
     isPublished: true
+ 
+    
   },
   {
     id: typeof crypto.randomUUID !== 'undefined' 

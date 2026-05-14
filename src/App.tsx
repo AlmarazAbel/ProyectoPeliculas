@@ -1,11 +1,11 @@
 // src/App.tsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import NavbarCustom from "./components/NavBar";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
-import { initialMovies } from "./data/movies"; // Asegúrate de importar tus datos
+ // Asegúrate de importar tus datos
 import { getMoviesFromStorage, type Movie } from "./data/movies";
 
 const App = () => {

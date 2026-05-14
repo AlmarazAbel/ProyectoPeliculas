@@ -28,9 +28,11 @@ const Admin = ({ onLogout }: AdminProps) => {
     if (movieToEdit) {
       // Actualizar existente
       updatedMovies = updatedMovies.map(m => m.id === newMovie.id ? newMovie : m);
+      console.log("Editando película con ID:", newMovie.id);
     } else {
       // Agregar nueva
       updatedMovies.push(newMovie);
+       console.log("Creando película con ID:", newMovie.id);
     }
 
     setMovies(updatedMovies);
