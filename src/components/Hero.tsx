@@ -1,44 +1,52 @@
-const Hero = () => {
+import type { Movie } from "../data/movies";
+
+interface HeroProps {
+  movie: Movie;
+}
+
+const Hero = ({ movie }: HeroProps) => {
+  
+    if (!movie) return null; 
+
   return (
     <section
-      className="relative h-[85vh] bg-cover bg-center"
+   
+      className="relative min-h-[80vh] lg:h-[85vh] flex items-center bg-cover bg-center transition-all duration-500"
       style={{
-        backgroundImage:
-          "url('https://wallpapercave.com/wp/wp4056410.jpg')",
+        backgroundImage: `url(${movie.image})`, // Sin las comillas simples internas
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-[#070b17] via-black/40 to-transparent"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center h-full px-6 lg:px-20">
+      <div className="relative z-10 w-full px-6 py-20 lg:px-20">
         <div className="max-w-2xl text-white">
-          <p className="text-violet-400 uppercase tracking-widest mb-3">
+          <p className="text-amber-700 text-sm lg:text-base uppercase tracking-widest mb-3 font-medium">
             Película destacada
           </p>
 
-          <h1 className="text-5xl lg:text-7xl font-bold mb-6">
-            John Wick 4
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 lg:mb-6 leading-tight">
+            {movie.name} {/* Nombre dinámico */}
           </h1>
 
-          <p className="text-lg text-gray-300 mb-8">
-            John Wick descubre un camino para derrotar a la Alta Mesa.
-            Pero antes de ganar su libertad, deberá enfrentarse a un
-            nuevo enemigo con poderosas alianzas.
+          <p className="text-base md:text-lg text-gray-300 mb-8 max-w-lg">
+            {movie.description} {/* Descripción dinámica */}
           </p>
 
-          <div className="flex gap-4">
-            <button className="bg-violet-600 hover:bg-violet-700 transition px-6 py-3 rounded-lg font-semibold">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="bg-violet-600 hover:bg-violet-700 transition px-8 py-3 rounded-lg font-semibold w-full sm:w-auto">
               ▶ Ver ahora
             </button>
 
-            <button className="border border-gray-400 hover:bg-white hover:text-black transition px-6 py-3 rounded-lg font-semibold">
+            <button className="border border-gray-400 backdrop-blur-sm hover:bg-white hover:text-black transition px-8 py-3 rounded-lg font-semibold w-full sm:w-auto">
               Más información
             </button>
           </div>
         </div>
       </div>
     </section>
+    
   );
 };
 

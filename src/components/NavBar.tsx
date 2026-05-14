@@ -1,97 +1,103 @@
 import { useState } from "react";
-
-import {
-  FaUserCircle,
-  FaSearch,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
-
+import { FaUserCircle, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const NavbarCustom = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+interface Props {
+  onSearch: (value: string) => void;
+}
+
+const NavbarCustom = ({ onSearch }: Props) => {
+
+const [menuOpen, setMenuOpen] = useState(false);
+const navigate = useNavigate();
+const categories = ["Acción", "Comedia", "Drama", "Terror", "Ciencia ficción"];
 
   return (
-    <nav className="bg-[#070b17] border-b border-slate-800">
-      <div className="w-full px-4 lg:px-8">
+    <nav className="bg-[#070b17] border-b border-slate-800 sticky top-0 z-[100]">
+      <div className="w-full px-4 md:px-12">
         
         {/* TOP BAR */}
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between h-20">
           
           {/* LOGO */}
-          <div>
-            <img
-              src="https://rollingcodeschool.com/wp-content/uploads/2022/04/Logo-RollingCode-blanco.png"
-              alt="logo"
-              className="h-10"
-            />
-          </div>
+        <Link to="/" className="flex items-center gap-3 group cursor-pointer no-underline">
+          <div className="flex items-center gap-3 group cursor-pointer">
+    {/* Icono Esfereográfico / Play */}
+    <div className="relative">
+      <svg 
+        width="45" 
+        height="45" 
+        viewBox="0 0 50 50" 
+        className="transform group-hover:scale-110 transition-transform duration-300"
+      >
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#7c3aed', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#4c1d95', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+        <rect width="50" height="50" rx="12" fill="url(#grad)" />
+        <path 
+          d="M15 15L35 15L35 35L15 35L15 15Z" 
+          stroke="#fbbf24" 
+          strokeWidth="2" 
+          strokeDasharray="4 2"
+        />
+        <path d="M22 18L32 25L22 32V18Z" fill="white" />
+      </svg>
+    </div>
+    
+    {/* Texto del Logo */}
+    <div className="flex flex-col leading-tight">
+      <h1 className="text-white text-2xl md:text-3xl font-black tracking-tighter uppercase italic">
+        WEB<span className="text-violet-500">PELIS</span>
+      </h1>
+      <div className="h-1 w-full bg-gradient-to-r from-violet-600 to-amber-500 rounded-full"></div>
+    </div>
+  </div>
+  </Link>
+ {/* Termina logo */}
 
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-8 text-white">
-            <NavLink
-              to="/"
-              className="hover:text-amber-600 transition"
-            >
-              Acción
-            </NavLink>
-
-            <NavLink
-              to="/"
-              className="hover:text-amber-600 transition"
-            >
-              Comedia
-            </NavLink>
-
-            <NavLink
-              to="/"
-              className="hover:text-amber-600 transition"
-            >
-              Drama
-            </NavLink>
-
-            <NavLink
-              to="/"
-              className="hover:text-amber-600 transition"
-            >
-              Terror
-            </NavLink>
-
-            <NavLink
-              to="/"
-              className="hover:text-amber-600 transition"
-            >
-              Documental
-            </NavLink>
+          {/* DESKTOP MENU (Visible desde md: 768px) */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 text-white">
+            {categories.map((cat) => (
+              <a
+    key={cat}
+    // Generamos el href dinámicamente: "Acción" -> "#accion"
+    href={`#${cat.toLowerCase().replace(/\s+/g, '')}`} 
+    className="hover:text-amber-600 transition text-sm lg:text-base font-medium cursor-pointer"
+  >
+    {cat}
+  </a>
+))}
           </div>
 
           {/* RIGHT SIDE DESKTOP */}
-          <div className="hidden lg:flex items-center gap-3">
-            
-            {/* SEARCH */}
-            <div className="flex items-center border hover:text-amber-600 rounded-md overflow-hidden bg-[#111827]">
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center border border-slate-700 hover:border-amber-600 rounded-md overflow-hidden bg-[#111827] transition">
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="bg-transparent text-white px-4 py-2 outline-none w-[220px]"
+                className="bg-transparent text-white px-3 py-2 outline-none w-[150px] lg:w-[220px] text-sm"
+                onChange={(e) => onSearch(e.target.value)}
               />
-
-              <button className="px-4 text-gray-300 hover:text-white">
+              <button className="px-3 text-gray-300 hover:text-white">
                 <FaSearch />
               </button>
             </div>
 
-            {/* LOGIN */}
-            <button className="flex items-center gap-2 border hover:text-amber-600 px-4 py-2 rounded-md text-white transition">
+            <button onClick={() => navigate("/login")}
+            className="flex items-center gap-2 border border-slate-700 hover:border-amber-600 px-4 py-2 rounded-md text-white hover:text-amber-600 transition text-sm">
               <FaUserCircle />
               Login
             </button>
           </div>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE BUTTON (Visible hasta 767px) */}
           <button
-            className="lg:hidden text-white text-2xl "
+            className="md:hidden text-white text-2xl p-2"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
@@ -99,39 +105,38 @@ const NavbarCustom = () => {
         </div>
 
         {/* MOBILE MENU */}
-        {menuOpen && (
-          <div className="lg:hidden flex flex-col gap-4 pb-6 text-white">
-            
-            <NavLink to="/accion">Acción</NavLink>
+        <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          menuOpen ? "max-h-[500px] opacity-100 pb-6" : "max-h-0 opacity-0"
+        }`}>
+          <div className="flex flex-col gap-4 text-white border-t border-slate-800 pt-4">
+            {categories.map((cat) => (
+              <a
+    key={cat}
+    // Generamos el href dinámicamente: "Acción" -> "#accion"
+    href={`#${cat.toLowerCase().replace(/\s+/g, '')}`} 
+    className="hover:text-amber-600 transition text-sm lg:text-base font-medium cursor-pointer"
+  >
+    {cat}
+  </a>
+            ))}
 
-            <NavLink to="/comedia">Comedia</NavLink>
-
-            <NavLink to="/drama">Drama</NavLink>
-
-            <NavLink to="/terror">Terror</NavLink>
-
-            <NavLink to="/documental">Documental</NavLink>
-
-            {/* SEARCH MOBILE */}
-            <div className="flex items-center border border-slate-700 rounded-md overflow-hidden bg-[#111827]">
+            <div className="flex items-center border border-slate-700 rounded-md overflow-hidden bg-[#111827] mt-2">
               <input
                 type="text"
                 placeholder="Buscar..."
                 className="bg-transparent text-white px-4 py-2 outline-none w-full"
               />
-
               <button className="px-4 text-gray-300">
                 <FaSearch />
               </button>
             </div>
 
-            {/* LOGIN MOBILE */}
-            <button className="flex items-center justify-center gap-2 border border-slate-700 px-4 py-2 rounded-md text-white hover:bg-violet-600 transition">
+            <button className="flex items-center justify-center gap-2 bg-amber-600 px-4 py-3 rounded-md text-white font-bold mt-2">
               <FaUserCircle />
               Login
             </button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
