@@ -33,8 +33,67 @@ WebPelículas permite visualizar un catálogo de películas, navegar por categor
 
 ## Instalación y ejecución
 
-```bash
 git clone https://github.com/AlmarazAbel/ProyectoPeliculas.git
+
 cd ProyectoPeliculas
+
 npm install
+
 npm run dev
+
+Luego abrir:
+
+http://localhost:5173/
+
+## Scripts disponibles
+
+npm run dev
+
+Ejecuta el proyecto en modo desarrollo.
+
+npm run build
+
+Genera la versión optimizada para producción.
+
+npm run preview
+
+Permite previsualizar el build de producción.
+
+## Rutas principales
+
+- `/` - Catálogo principal.
+- `/login` - Login administrador.
+- `/admin` - Panel de administración.
+
+## Credenciales de prueba
+
+Usuario: admin
+
+Contraseña: admin
+
+## Estructura principal
+
+src/
+├── components/
+│   ├── Hero.tsx
+│   ├── MovieCard.tsx
+│   ├── MovieModal.tsx
+│   └── NavBar.tsx
+├── data/
+│   └── movies.ts
+├── pages/
+│   ├── Admin.tsx
+│   ├── Home.tsx
+│   └── Login.tsx
+├── App.tsx
+├── main.tsx
+└── index.css
+
+## Persistencia de datos
+
+El proyecto utiliza LocalStorage para simular una base de datos local. Las películas se guardan bajo la clave `movies`, mientras que la autenticación del administrador se almacena mediante la clave `isAuth`.
+
+## Integrantes
+
+- Guadalupe Pereyra
+- Jesús Almaraz
