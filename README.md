@@ -1,75 +1,40 @@
-# React + TypeScript + Vite
+# WebPelículas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web de películas tipo streaming desarrollada con React, TypeScript y Vite como proyecto integrador.
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+WebPelículas permite visualizar un catálogo de películas, navegar por categorías, buscar contenido y administrar películas desde un panel privado. La persistencia de datos se simula mediante LocalStorage, sin utilizar backend.
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Catálogo principal de películas.
+- Hero con película destacada.
+- Secciones por categoría.
+- Buscador de películas.
+- Login de administrador.
+- Panel de administración.
+- Alta, edición y eliminación de películas.
+- Gestión de película destacada.
+- Persistencia con LocalStorage.
+- Diseño responsive.
 
-Note: This will impact Vite dev & build performances.
+## Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- React Router DOM
+- React Hook Form
+- Tailwind CSS
+- SweetAlert2
+- React Icons
+- LocalStorage
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Instalación y ejecución
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```bash
+git clone https://github.com/AlmarazAbel/ProyectoPeliculas.git
+cd ProyectoPeliculas
+npm install
+npm run dev
