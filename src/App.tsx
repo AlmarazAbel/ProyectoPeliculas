@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Pagina404 from "./pages/Pagina404";
+import Footer from "./components/Footer";
 import { saveMoviesToStorage } from "./data/movies";
 import { getMoviesFromStorage, type Movie } from "./data/movies";
 
@@ -124,6 +125,7 @@ const App = () => {
         <Route path="*" element={<Pagina404 />} />
         //son rutas que no existe renderiza al pag error
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
