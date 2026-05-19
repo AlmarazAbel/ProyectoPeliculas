@@ -17,12 +17,14 @@ const MovieModal = ({ isOpen, onClose, onSave, movieToEdit }: Props) => {
     reset,
     formState: { errors },
   } = useForm<Omit<Movie, "id">>();
+  // <Omit<Movie, "id">> captura todo excepto el id
 
   // Efecto para cargar datos o limpiar el formulario
   useEffect(() => {
-    if (movieToEdit) {
+    if (movieToEdit) {//Modo Edición: Si movieToEdit tiene una película adentro, la función reset()
+    //  de React Hook Form inyecta todos sus datos directamente en los inputs.
       reset({ ...movieToEdit });
-    } else {
+    } else {// si es null limpia todos los campos
       reset({
         name: "",
         category: "Acción",
@@ -41,12 +43,15 @@ const MovieModal = ({ isOpen, onClose, onSave, movieToEdit }: Props) => {
     const movieData: Movie = {
       ...data,
       id: movieToEdit?.id || crypto.randomUUID(),
+      //“si existe una película para editar, usar su id” de lo contrario crea un id
     };
     onSave(movieData);
     onClose();
   };
 
   if (!isOpen) return null;
+  //Esto significa que el modal directamente no se dibuja en el DOM,
+  //  manteniéndose oculto y liberando memoria del navegador.
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">

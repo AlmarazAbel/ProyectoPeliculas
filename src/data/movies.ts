@@ -89,16 +89,21 @@ export const initialMovies: Movie[] = [
 
 export const saveMoviesToStorage = (movies: Movie[]): void => {
   localStorage.setItem("movies", JSON.stringify(movies));
+  //movie es el nombre con el cual se guarda los datos , JSON.sr.... es el valor
+  //localStorage solo puede guardar texto.Pero movies es un arreglo
+  //JSON.stringify()convierte el arreglo en texto JSON.
 };
 
-// Asegúrate de exportar también la función de almacenamiento
+// leer las películas guardadas en localStorage y si no hay ninguna guardada:crear datos iniciales
 export const getMoviesFromStorage = (): Movie[] => {
   const storedMovies = localStorage.getItem("movies");
+  //sin no hay peliculas guardadas
   if (!storedMovies) {
+    //guardar pelis iniciales
     localStorage.setItem("movies", JSON.stringify(initialMovies));
     return initialMovies;
   }
   
   return JSON.parse(storedMovies);
-  
+  //Convierte texto JSON nuevamente en un arreglo/objeto real.
 };
