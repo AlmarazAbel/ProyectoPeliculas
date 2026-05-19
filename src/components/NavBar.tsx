@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { FaUserCircle, FaSearch, FaBars, FaTimes } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 interface Props {
   onSearch: (value: string) => void;
 }
+//Comunicación ascendente (de hijo a padre App.tsx).
 
 const NavbarCustom = ({ onSearch }: Props) => {
 
 const [menuOpen, setMenuOpen] = useState(false);
+//controla si el menú desplegable en celulares está abierto o cerrado.
 const navigate = useNavigate();
 const categories = ["Acción", "Comedia", "Drama", "Terror", "Ciencia ficción"];
 
   return (
-    <nav className="bg-[#070b17] border-b border-slate-800 sticky top-0 z-[100]">
+    <nav className="bg-[#070b17] border-b border-slate-800 sticky top-0 z-100">
       <div className="w-full px-4 md:px-12">
         
         {/* TOP BAR */}
@@ -66,7 +68,10 @@ const categories = ["Acción", "Comedia", "Drama", "Terror", "Ciencia ficción"]
               <a
     key={cat}
     // Generamos el href dinámicamente: "Acción" -> "#accion"
+    //Anclas
     href={`#${cat.toLowerCase().replace(/\s+/g, '')}`} 
+    //Sirve para normalizar los enlaces internos. Por ejemplo, la categoría 'Ciencia ficción' tiene un espacio en
+    //  el medio. Los enlaces de ancla HTML (href) no deberían llevar espacios
     className="hover:text-amber-600 transition text-sm lg:text-base font-medium cursor-pointer"
   >
     {cat}
@@ -80,7 +85,7 @@ const categories = ["Acción", "Comedia", "Drama", "Terror", "Ciencia ficción"]
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="bg-transparent text-white px-3 py-2 outline-none w-[150px] lg:w-[220px] text-sm"
+                className="bg-transparent text-white px-3 py-2 outline-none w-37.5 lg:w-55 text-sm"
                 onChange={(e) => onSearch(e.target.value)}
               />
               <button className="px-3 text-gray-300 hover:text-white">

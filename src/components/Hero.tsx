@@ -7,12 +7,16 @@ interface HeroProps {
 const Hero = ({ movie }: HeroProps) => {
   
     if (!movie) return null; 
+    //Al poner if (!movie) return null;, el componente frena 
+    // a tiempo y devuelve "nada" de forma segura sin romper el sitio.
 
   return (
     <section
    
       className="relative min-h-[80vh] lg:h-[85vh] flex items-center bg-cover bg-center transition-all duration-500"
       style={{
+        //se usa style Porque la imagen del fondo es dinámica y cambia según la película destacada guardada en
+        //  la base de datos o el storage. Tailwind maneja clases estáticas
         backgroundImage: `url(${movie.image})`, // Sin las comillas simples internas
       }}
     >

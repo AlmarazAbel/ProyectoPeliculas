@@ -4,39 +4,30 @@ import Swal from "sweetalert2";
 // 1. Los imports SIEMPRE van arriba de todo, fuera del componente
 import MovieModal from "../components/MovieModal";
 interface AdminProps {
+  movies: Movie[];
+  onAddMovie: (newMovie: Movie) => void;
+  onDeleteMovie: (id: string) => void;
+  onUpdateMovie: (updatedMovie: Movie) => void;
   onLogout: () => void;
 }
-const Admin = ({ onLogout }: AdminProps) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+const Admin = ({ movies, onAddMovie, onDeleteMovie, onUpdateMovie, onLogout }: AdminProps) => {
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   // 2. Necesitas este estado para saber qué película estás editando
   const [movieToEdit, setMovieToEdit] = useState<Movie | null>(null);
 
-  useEffect(() => {
-    setMovies(getMoviesFromStorage());
-  }, []);
+  
 
   // 3. Función para guardar (crear o editar)
   const handleSaveMovie = (newMovie: Movie) => {
-    let updatedMovies = [...movies];
-
-    // Lógica de Destacado: solo una a la vez (Consigna 2.B)
-    if (newMovie.isFeatured) {
-      updatedMovies = updatedMovies.map(m => ({ ...m, isFeatured: false }));
-    }
-
     if (movieToEdit) {
-      // Actualizar existente
-      updatedMovies = updatedMovies.map(m => m.id === newMovie.id ? newMovie : m);
+      onUpdateMovie(newMovie);
       console.log("Editando película con ID:", newMovie.id);
     } else {
-      // Agregar nueva
-      updatedMovies.push(newMovie);
-       console.log("Creando película con ID:", newMovie.id);
+      onAddMovie(newMovie);
+      console.log("Creando película con ID:", newMovie.id);
     }
 
-    setMovies(updatedMovies);
-    saveMoviesToStorage(updatedMovies);
     setIsModalOpen(false);
     setMovieToEdit(null);
 
@@ -63,9 +54,7 @@ const Admin = ({ onLogout }: AdminProps) => {
       color: "#ffffff"
     }).then((result) => {
       if (result.isConfirmed) {
-        const updatedMovies = movies.filter((m) => m.id !== id);
-        setMovies(updatedMovies);
-        saveMoviesToStorage(updatedMovies);
+        onDeleteMovie(id);
         Swal.fire({
           title: "Eliminado",
           icon: "success",
